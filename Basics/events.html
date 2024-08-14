@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" conent="ie=edge">
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <title>Project one</title>
+
+        <style>
+            .box {
+                background: orange;
+                width: 200px;
+                height: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <div class="box" @mousemove="getCoord"></div>
+            <p>{{ coord.x }}</p>
+            <p>{{ coord.y }}</p>
+        </div>
+    </body>
+    <script>
+        const { createApp, ref } = Vue;
+        createApp({
+            setup() {
+
+                const coord = ref({x: 0, y:0});
+
+                function getCoord(event) {
+                    coord.value.x = event.clientX;
+                    coord.value.y = event.clientY;
+                }
+
+                return {
+                    coord, getCoord
+                }
+            }
+        }).mount('#app')
+    </script>
+</html>
